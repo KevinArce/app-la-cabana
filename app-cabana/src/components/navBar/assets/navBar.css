@@ -1,0 +1,8 @@
+.link-nav {
+    line-height: 18px;
+    letter-spacing: -0.2px;
+    color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -69,7 +69,7 @@ const Login = () => {
       </form>
 
       <div className="m-0 w-100 px-3 mt-5 d-flex justify-content-center">
-        <div className="col-6">
+        <div className="col-8 d-flex justify-content-center">
           <NavLink className="link-bottom" to="/register">
             ¿No tienes cuenta? Crear cuenta
           </NavLink>

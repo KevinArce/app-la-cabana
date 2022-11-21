@@ -12,11 +12,14 @@ a {
 }
 
 .navbar {
-  height: 50px;
-  background-color: red;
+  height: 70px;
+  background-color: #EEEEEE;
   position: fixed;
   bottom: 0;
   width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 #root {
