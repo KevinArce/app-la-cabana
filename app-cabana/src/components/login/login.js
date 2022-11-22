@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./assets/login.css";
 import logo from "./assets/img/logo.png";
 import imgFloating from "./assets/img/img-floating.png";
 
+
 const Login = () => {
   // ocultar y mostrar contraseña
   const [passwordType, setPasswordType] = useState("password");
+
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({ usuario: "", clave: "" });
 
@@ -63,7 +66,16 @@ const Login = () => {
           </button>
 
           <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-            <button className={"btn-login"}>Ingresar</button>
+            <button
+              className={"btn-login"}
+              onClick={(e) => {
+                e.preventDefault();
+                console.log("login");
+                navigate("/admin");
+              }}
+            >
+              Ingresar
+            </button>
           </div>
         </div>
       </form>

@@ -6,3 +6,19 @@
     align-items: center;
     justify-content: center;
 }
+
+.link-nav.active > .icon-nav-active {
+    display: block;
+}
+
+.link-nav.active > .icon-nav {
+    display: none;
+}
+
+.link-nav > .icon-nav-active {
+    display: none;
+}
+
+.link-nav > .icon-nav {
+    display: block;
+}

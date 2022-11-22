@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 import PrivateRoute from "./PrivateRoute";
 import Login from "../components/login/login";
@@ -9,11 +9,11 @@ const App = () => {
   const { user } = useContext(AuthContext);
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+      <Route exact path="/" element={<Login />} />
         <Route
-          path="/Home/*"
+          path="/admin/*"
           element={
             <PrivateRoute user={user}>
               <AppRoutes />
@@ -21,7 +21,8 @@ const App = () => {
           }
         />
       </Routes>
-    </BrowserRouter>
+      
+    </HashRouter>
   );
 };
 
