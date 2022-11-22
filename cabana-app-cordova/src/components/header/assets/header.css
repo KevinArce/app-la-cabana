@@ -1,0 +1,15 @@
+img.logo-home {
+  width: 150px;
+}
+
+.header-bg {
+  background-image: url(./img/img-floating.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top;
+  height: 165px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
