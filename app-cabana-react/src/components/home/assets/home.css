@@ -1,0 +1,198 @@
+.portada {
+    color: #0009;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    font-family: Montserrat;
+    font-size: .688rem;
+    font-weight: 600;
+    line-height: 13px;
+    display: flex;
+  }
+  
+  .flex-container {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+  
+  .group-12 {
+    width: 320px;
+    height: 139px;
+    object-fit: cover;
+    margin-right: -113px;
+  }
+  
+  .recurso-1-4 {
+    width: 116px;
+    height: 47px;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    margin-top: 17px;
+    margin-left: -113px;
+  }
+  
+  .carbonuser-avatar-fi {
+    width: 20px;
+    height: 20px;
+    object-fit: cover;
+  }
+  
+  .flex-container-1 {
+    color: #6d6a6a;
+    width: 30%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+    font-weight: 400;
+    display: flex;
+  }
+  
+  .maria-rosales {
+    margin-bottom: 1px;
+  }
+  
+  .cisettings-filled {
+    width: 14px;
+    height: 14px;
+    object-fit: cover;
+  }
+  
+  .flex-container-2 {
+    color: #2f6b35;
+    width: 50%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 11px;
+    font-size: .75rem;
+    line-height: 15px;
+    display: flex;
+  }
+  
+  .group-1 {
+    width: 14px;
+    height: 14px;
+    object-fit: cover;
+  }
+  
+  .actualizada {
+    color: #6d6a6a;
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  
+  .consulta-liquidacin {
+    color: #000;
+    margin-left: 3px;
+    font-size: .938rem;
+    line-height: 18px;
+  }
+  
+  .rectangle-20 {
+    width: 85%;
+    background-color: #fdfdfd;
+    border-radius: 5px;
+    flex-direction: row;
+    flex-basis: 7%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 8px;
+    padding-right: 5px;
+    font-size: .625rem;
+    line-height: 12px;
+    display: flex;
+  }
+  
+  .corte-3-desde-16-12 {
+    margin-left: 2px;
+  }
+  
+  .eparrow-up {
+    width: 12px;
+    height: 12px;
+    object-fit: cover;
+  }
+  
+  .rectangle-193 {
+    color: #fff;
+    width: 60%;
+    background-color: #2f6b35;
+    border: none;
+    border-radius: 8px;
+    flex-direction: row;
+    flex-basis: 5%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4px;
+    margin-left: 6px;
+    padding-top: 1px;
+    padding-left: 2px;
+    font-family: Montserrat;
+    font-size: .688rem;
+    font-weight: 600;
+    line-height: 13px;
+    display: flex;
+  }
+  
+  .ver-liquidaciones {
+    margin-top: 1px;
+    margin-left: 1px;
+  }
+  
+  .flex-container-3 {
+    width: 80%;
+    flex-direction: row;
+    flex-basis: 2%;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-left: 12px;
+    font-weight: 500;
+    line-height: 20px;
+    display: flex;
+  }
+  
+  .zafra {
+    font-weight: 400;
+    line-height: 13px;
+  }
+  
+  .chart-title {
+    align-self: flex-end;
+    margin-right: -145px;
+  }
+  
+  .flex-container-4 {
+    color: #000;
+    width: 70%;
+    flex-direction: row;
+    flex-basis: 2%;
+    justify-content: space-between;
+    align-items: stretch;
+    margin-bottom: 83px;
+    font-size: .938rem;
+    line-height: 36px;
+    display: flex;
+  }
+  
+  .num-2021-2022 {
+    line-height: 18px;
+  }
+  
+  .metric {
+    align-self: flex-end;
+  }
+  
+  .rectangle-195 {
+    width: 320px;
+    height: 62px;
+    object-fit: cover;
+    margin-top: 8px;
+  }
