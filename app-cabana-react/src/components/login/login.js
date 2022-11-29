@@ -41,6 +41,7 @@ const Login = () => {
     return "";
   };
 
+  // Add a username validation function
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
     const { usuario, clave } = formData;
