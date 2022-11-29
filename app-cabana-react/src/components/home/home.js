@@ -7,8 +7,7 @@ import eparrowUp from "./assets/eparrowUp.svg";
 const Home = () => {
   return (
     <div className="portada">
-      <div className="flex-container">
-      </div>
+      <div className="flex-container"></div>
       <img className="carbonuser-avatar-fi" src={carbonuserAvatarFi} />
       <div className="flex-container-1">
         <span className="maria-rosales">Maria Rosales</span>
@@ -37,10 +36,8 @@ const Home = () => {
         <span className="num-2021-2022">2021 - 2022</span>
         <span className="metric">370.57 TM</span>
       </div>
-      
     </div>
   );
-
 };
 
 export default Home;
