@@ -23,11 +23,21 @@ class product {
         try {
             const user = req.body;
             const result = await productMssql.getAuthUsers(user);
-            res.send(result);
+            const json = JSON.parse(result);
+            // Using the Store Procedure called "ILC_Moviles.dbo.Sp_Portal_Rendi_Login_Select" to login
+            if (json.length > 0) {
+                res.send(json);
+            }
+            else {
+                res.send('Usuario o contraseña incorrectos');
+            }
+            
         }
+
         catch (error) {
             console.log(error);
         }
+
     }
 
     //getIndex

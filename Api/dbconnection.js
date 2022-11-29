@@ -5,11 +5,16 @@ class DBConnection {
   async getConnection() {
      try {
        return await mssql.connect({
-              user: 'sa',
-              password: 'sa',
-              server: 'localhost',
-              database: 'Demo',
-              port: 1433
+              user: 'web.informatica',
+              password: 'web.informatica',
+              server: '10.1.3.95',
+              database: '',
+              port: 1433,
+              options : {
+                encrypt : false,
+                enableArithAbort : true,
+                trustServerCertificate: true
+            }
        });
     }
     catch(error) {
@@ -17,5 +22,6 @@ class DBConnection {
     }
   }
 }
+
 /* Exporting the class DBConnection. */
 module.exports = new DBConnection();

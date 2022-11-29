@@ -51,7 +51,7 @@ class ProductController {
         router.get('/creditoActivosTabla', product.getCreditoActivosTabla);
 
 
-      app.use('/api/v1/products', router);
+      app.use('/api/v1', router);
     }
  }
 module.exports = ProductController;

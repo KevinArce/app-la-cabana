@@ -1,4 +1,5 @@
 const mssqlcon = require('../../dbconnection');
+const mssql = require('mssql');
 class ProductMSSql 
 { 
 
@@ -28,6 +29,8 @@ class ProductMSSql
                 .input('user', mssql.VarChar, user)
                 .input('pass', mssql.VarChar, pass)
                 .execute('ILC_Moviles.dbo.Sp_Portal_Rendi_Login_Select');
+            // Parse the result to JSON
+            result.recordset = JSON.stringify(result.recordset);
             return result.recordset;
         }
         catch (error) {
