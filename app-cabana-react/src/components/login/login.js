@@ -27,6 +27,35 @@ const Login = () => {
     setPasswordType("password");
   };
 
+  //Add a password validation function
+  const validatePassword = (password) => {
+    if (password.length < 8) {
+      return "Password must be at least 8 characters";
+    }
+    if (password.search(/[a-z]/i) < 0) {
+      return "Password must contain at least one letter.";
+    }
+    if (password.search(/[0-9]/) < 0) {
+      return "Password must contain at least one digit.";
+    }
+    return "";
+  };
+
+  const handleSubmit = (evnt) => {
+    evnt.preventDefault();
+    const { usuario, clave } = formData;
+    const passwordError = validatePassword(clave);
+    if (passwordError) {
+      alert(passwordError);
+      return;
+    }
+    if (usuario === "admin" && clave === "Admin12345678") { // Estos son los accesos que deje quedamos
+      navigate("/admin");
+    } else {
+      alert("Usuario o contraseña incorrectos");
+    }
+  };
+
   return (
     <div className="login-body p-0 m-0">
       <div className="login-body p-0 m-0">
@@ -69,9 +98,7 @@ const Login = () => {
             <button
               className={"btn-login"}
               onClick={(e) => {
-                e.preventDefault();
-                console.log("login");
-                navigate("/admin");
+                handleSubmit(e);
               }}
             >
               Ingresar
