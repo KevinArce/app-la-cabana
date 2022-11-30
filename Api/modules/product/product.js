@@ -130,6 +130,17 @@ class product {
         }
     }
 
+    //getSp_Portal_Rendi_Lotes_Select
+    async getSp_Portal_Rendi_Lotes_Select(req, res) {
+        try {
+            const result = await productMssql.getSp_Portal_Rendi_Lotes_Select();
+            res.send(result);
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
     //getToneladasTotalesTabla
     async getToneladasTotalesTabla(req, res) {
         try {

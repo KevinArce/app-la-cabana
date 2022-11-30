@@ -22,15 +22,15 @@ class ProductMSSql
      * @param pass - The password of the user
      * @returns The result of the query is being returned.
      */
-    async getAuthUsers(user, pass) {
+    async getAuthUsers(USUARIO, PASS) {
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
-                .input('user', mssql.VarChar, user)
-                .input('pass', mssql.VarChar, pass)
+                .input('USUARIO', mssql.VarChar, USUARIO)
+                .input('PASS', mssql.VarChar, PASS)
                 .execute('ILC_Moviles.dbo.Sp_Portal_Rendi_Login_Select');
             // Parse the result to JSON
-            result.recordset = JSON.stringify(result.recordset);
+            //result.recordset = JSON.stringify(result.recordset);
             return result.recordset;
         }
         catch (error) {
@@ -57,13 +57,16 @@ class ProductMSSql
 
     // Create liquidacion to get all values from the database
     /**
-     * It's creating a connection to the database and then it's executing a stored procedure
-     * @returns It's returning a recordset.
+     * It's creating a connection to the database and then it's executing a stored procedure called lczafra.vfp.SP_ZAFPRE_LIQUIDACION_MZ_PortalWeb
+     * and takes a variable called corte and zafra as a parameters
+     * 
      */
-    async getLiquidacion() {
+    async getLiquidacion(corte, zafra) {
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
+                .input('corte', mssql.VarChar, corte)
+                .input('zafra', mssql.VarChar, zafra)
                 .execute('lczafra.vfp.SP_ZAFPRE_LIQUIDACION_MZ_PortalWeb');
             return result.recordset;
         }
@@ -83,8 +86,8 @@ class ProductMSSql
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
-                .input('zafra', mssql.VarChar, zafra)
-                .input('cliente', mssql.VarChar, cliente)
+                .input('ZAFRA', mssql.VarChar, zafra)
+                .input('Proveedor', mssql.VarChar, cliente)
                 .query("SELECT CONVERT(DECIMAL(10,2),SUM(TONPRO)) AS TONPRO FROM LCMAESTROZAF..MOVIL_secuenciaformatomovil WHERE ZAFRA = @zafra AND Proveedor = @cliente");
             return result.recordset;
         }
@@ -112,12 +115,14 @@ class ProductMSSql
 
     // Create a Portal_Rendi_Cortes_Select to make a request to the database
     /**
-     * It connects to a database, executes a stored procedure, and returns the result
+     * It connects to a database, executes a stored procedure called Sp_Portal_Rendi_Cortes_Select, and takes a variable called ZAFRA and CODCLIE as a parameters
      */
-    async getPortal_Rendi_Cortes_Select() {
+    async getPortal_Rendi_Cortes_Select(ZAFRA, CODCLIE) {
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
+                .input('ZAFRA', mssql.VarChar, ZAFRA)
+                .input('CODCLIE', mssql.VarChar, CODCLIE)
                 .execute('ILC_Moviles.dbo.Sp_Portal_Rendi_Cortes_Select');
             return result.recordset;
         }
@@ -131,10 +136,12 @@ class ProductMSSql
      * It connects to the database, executes a stored procedure, and returns the result
      * @returns An array of objects.
      */
-    async getSp_Portal_Rendi_Envios_Select() {
+    async getSp_Portal_Rendi_Envios_Select( codProv, zafra) {
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
+                .input('codProv', mssql.VarChar, codProv)
+                .input('zafra', mssql.VarChar, zafra)
                 .execute('LCMOVZAF.dbo.Sp_Portal_Rendi_Envios_Select');
             return result.recordset;
         }
@@ -152,7 +159,7 @@ class ProductMSSql
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
-                .execute('LCMOVZAF.dbo.Sp_Portal_Rendi_Proveedores_Select');
+                .execute('ILC_Moviles.dbo.Sp_Portal_Rendi_Proveedores_Select');
             return result.recordset;
         }
         catch (error) {
@@ -176,6 +183,32 @@ class ProductMSSql
             console.log(error);
         }
     }
+
+
+    // Create a LCMOVZAF.dbo.Sp_Portal_Rendi_Lotes_Select to make a request to the database taking $ZAFRA and $CORTE and $CODCLIE as parameters
+    /**
+     * It connects to a database, executes a stored procedure, and returns the result
+     * @returns A recordset.
+     * @param ZAFRA - The year of the harvest.
+     * @param CORTE - The number of the cut.
+     * @param CODCLIE - The code of the client.
+     * @returns The result of the query is being returned.
+     */
+    async getSp_Portal_Rendi_Lotes_Select(ZAFRA, CORTE, CODCLIE) {
+        try {   
+            const conn = await mssqlcon.getConnection();
+            const result = await conn.request()
+                .input('ZAFRA', mssql.VarChar, ZAFRA)
+                .input('CORTE', mssql.VarChar, CORTE)
+                .input('CODCLIE', mssql.VarChar, CODCLIE)
+                .execute('LCMOVZAF.dbo.Sp_Portal_Rendi_Lotes_Select');
+            return result.recordset;
+        }
+        catch (error) {
+            console.log(error);
+        }
+    }
+
 
     // Create a toneladasTotalesTabla to make a request to the database taking $zafra, $codProv and $codFinca as parameters
     /**

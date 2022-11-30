@@ -15,25 +15,28 @@ class ProductController {
         router.get('/index', product.getIndex);
 
         // getLiquidacion
-        router.get('/liquidacion', product.getLiquidacion);
+        router.post('/liquidacion', product.getLiquidacion);
 
         // getPortada
-        router.get('/portada', product.getPortada);
+        router.post('/portada', product.getPortada);
 
         //getComparativoCliente
         router.get('/comparativoCliente', product.getComparativoCliente);
 
         //getPortal_Rendi_Cortes_Select
-        router.get('/portalRendiCortesSelect', product.getPortal_Rendi_Cortes_Select);
+        router.post('/portalRendiCortesSelect', product.getPortal_Rendi_Cortes_Select);
         
         //getSp_Portal_Rendi_Envios_Select
-        router.get('/portalRendiEnviosSelect', product.getSp_Portal_Rendi_Envios_Select);
+        router.post('/portalRendiEnviosSelect', product.getSp_Portal_Rendi_Envios_Select);
 
         //getSp_Portal_Rendi_Proveedores_Select
         router.get('/portalRendiProveedoresSelect', product.getSp_Portal_Rendi_Proveedores_Select);
 
         //getToneladasTotales
         router.get('/toneladasTotales', product.getToneladasTotales);
+
+        //getSp_Portal_Rendi_Lotes_Select
+        router.post('/portalRendiLotesSelect', product.getSp_Portal_Rendi_Lotes_Select);
 
         //getToneladasTotalesTabla
         router.get('/toneladasTotalesTabla', product.getToneladasTotalesTabla);
