@@ -22,7 +22,7 @@ class ProductMSSql
      * @param pass - The password of the user
      * @returns The result of the query is being returned.
      */
-    async getAuthUsers(USUARIO, PASS) {
+    async getAuthUsers(USUARIO, PASS) { // Hace uso de una tabla a la que no tengo acceso
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -43,7 +43,7 @@ class ProductMSSql
      * It's a function that returns a promise that resolves to an array of objects
      * @returns An array of objects.
      */
-    async getIndex() {
+    async getIndex() { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -61,7 +61,7 @@ class ProductMSSql
      * and takes a variable called corte and zafra as a parameters
      * 
      */
-    async getLiquidacion(corte, zafra) {
+    async getLiquidacion(corte, zafra) { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -82,13 +82,13 @@ class ProductMSSql
      * @param cliente - cliente
      * @returns The result of the query is being returned.
      */
-    async getPortada(zafra, cliente) {
+    async getPortada(ZAFRA, Proveedor) { //Pendiente RequestError: Validation failed for parameter 'ZAFRA'. Invalid string.
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
-                .input('ZAFRA', mssql.VarChar, zafra)
-                .input('Proveedor', mssql.VarChar, cliente)
-                .query("SELECT CONVERT(DECIMAL(10,2),SUM(TONPRO)) AS TONPRO FROM LCMAESTROZAF..MOVIL_secuenciaformatomovil WHERE ZAFRA = @zafra AND Proveedor = @cliente");
+                .input('ZAFRA', mssql.VarChar, ZAFRA)
+                .input('Proveedor', mssql.VarChar, Proveedor)
+                .query('SELECT CONVERT(DECIMAL(10,2),SUM(TONPRO)) AS TONPRO FROM LCMAESTROZAF..MOVIL_secuenciaformatomovil WHERE ZAFRA = @ZAFRA AND Proveedor = @Proveedor');
             return result.recordset;
         }
         catch (error) {
@@ -101,7 +101,7 @@ class ProductMSSql
      * It connects to the database, executes a stored procedure, and returns the result
      * @returns A recordset
      */
-    async getComparativoCliente() {
+    async getComparativoCliente() { // Pendiente RequestError: Could not find stored procedure 'LCMAESTROZAF..ComparativoCliente'.
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -117,7 +117,7 @@ class ProductMSSql
     /**
      * It connects to a database, executes a stored procedure called Sp_Portal_Rendi_Cortes_Select, and takes a variable called ZAFRA and CODCLIE as a parameters
      */
-    async getPortal_Rendi_Cortes_Select(ZAFRA, CODCLIE) {
+    async getPortal_Rendi_Cortes_Select(ZAFRA, CODCLIE) { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -136,7 +136,7 @@ class ProductMSSql
      * It connects to the database, executes a stored procedure, and returns the result
      * @returns An array of objects.
      */
-    async getSp_Portal_Rendi_Envios_Select( codProv, zafra) {
+    async getSp_Portal_Rendi_Envios_Select( codProv, zafra) { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -155,7 +155,7 @@ class ProductMSSql
      * It connects to a database, executes a stored procedure, and returns the result
      * @returns A recordset.
      */
-    async getSp_Portal_Rendi_Proveedores_Select() {
+    async getSp_Portal_Rendi_Proveedores_Select() { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -172,7 +172,7 @@ class ProductMSSql
      * It connects to a database, executes a stored procedure, and returns the result
      * @returns The result of the query is being returned.
      */
-    async getToneladasTotales() {
+    async getToneladasTotales() { // Pendiente RequestError: Could not find stored procedure 'LCMAESTROZAF..ComparativoCliente'.
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -194,7 +194,7 @@ class ProductMSSql
      * @param CODCLIE - The code of the client.
      * @returns The result of the query is being returned.
      */
-    async getSp_Portal_Rendi_Lotes_Select(ZAFRA, CORTE, CODCLIE) {
+    async getSp_Portal_Rendi_Lotes_Select(ZAFRA, CORTE, CODCLIE) { //DONE
         try {   
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -217,7 +217,7 @@ class ProductMSSql
      * @param codProv - The code of the provider
      * @param codFinca - 0
      */
-    async getToneladasTotalesTabla(zafra, codProv, codFinca) {
+    async getToneladasTotalesTabla(zafra, codProv, codFinca) { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -238,7 +238,7 @@ class ProductMSSql
      * @param codProv - The code of the provider.
      * @returns An array of objects.
      */
-    async getComboLotes(zafra, codProv) {
+    async getComboLotes(zafra, codProv) { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -257,7 +257,7 @@ class ProductMSSql
      * It connects to a database and executes a stored procedure.
      * @returns The result of the query is being returned.
      */
-    async getGraficarResumen() {
+    async getGraficarResumen() { //DONE
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()
@@ -273,7 +273,7 @@ class ProductMSSql
     /**
      * It's a function that returns a promise that resolves to an array of objects
      */
-    async getDetalleEstadoCuenta() {
+    async getDetalleEstadoCuenta() { // Pendiente RequestError: Could not find stored procedure 'LCCREDITOS..SP_VistaRepIndiviInteres_LineaCredito_WEB'.
         try {
             const conn = await mssqlcon.getConnection();
             const result = await conn.request()

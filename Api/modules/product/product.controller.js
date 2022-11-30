@@ -39,10 +39,10 @@ class ProductController {
         router.post('/portalRendiLotesSelect', product.getSp_Portal_Rendi_Lotes_Select);
 
         //getToneladasTotalesTabla
-        router.get('/toneladasTotalesTabla', product.getToneladasTotalesTabla);
+        router.post('/toneladasTotalesTabla', product.getToneladasTotalesTabla);
 
         //getComboLotes
-        router.get('/comboLotes', product.getComboLotes);
+        router.post('/comboLotes', product.getComboLotes);
 
         //getGraficarResumen
         router.get('/graficarResumen', product.getGraficarResumen);

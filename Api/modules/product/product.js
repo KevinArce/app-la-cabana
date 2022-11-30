@@ -65,9 +65,9 @@ class product {
     //getPortada
     async getPortada(req, res) {
         try {
-            const zafra = req.body;
-            const cliente = req.body;
-            const result = await productMssql.getPortada(zafra, cliente);
+            const ZAFRA = req.body;
+            const Proveedor = req.body;
+            const result = await productMssql.getPortada(ZAFRA, Proveedor);
             res.send(result);
         }
         catch (error) {
