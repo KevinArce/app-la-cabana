@@ -1,7 +1,7 @@
 /* Importing the express module. */
-const express = require('express');
+const express = require("express");
 /* Importing the body-parser module. */
-const bodyparser = require('body-parser');
+const bodyparser = require("body-parser");
 
 /* Creating an instance of the express module. */
 const app = express();
@@ -12,11 +12,17 @@ const app = express();
  * then calls the init() function of the approuting module
  */
 async function init() {
-   app.use(bodyparser.json({ limit: '500mb' }));
-   app.use(bodyparser.urlencoded({ limit: '500mb', extended: true, parameterLimit: 500000 }));
-   const approuting = require('./modules');
-   const appmodules = new approuting(app);
-   appmodules.init();
+  app.use(bodyparser.json({ limit: "50mb" }));
+  app.use(
+    bodyparser.urlencoded({
+      limit: "50mb",
+      extended: true,
+      parameterLimit: 50000,
+    })
+  );
+  const approuting = require("./modules");
+  const appmodules = new approuting(app);
+  appmodules.init();
 }
 
 /* Calling the init() function. */
