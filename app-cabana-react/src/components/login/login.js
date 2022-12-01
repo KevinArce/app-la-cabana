@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./assets/login.css";
 import logo from "./assets/img/logo.png";
 import imgFloating from "./assets/img/img-floating.png";
+//import { getAuthUsers } from "../../../../Api/modules/product/product.controller";
 
 
 const Login = () => {
@@ -44,19 +45,31 @@ const Login = () => {
   // Add a username validation function
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
-    const { usuario, clave } = formData;
-    const passwordError = validatePassword(clave);
+    const { usuario, pass } = formData;
+    const passwordError = validatePassword(pass);
     if (passwordError) {
       alert(passwordError);
       return;
     }
-    if (usuario === "admin" && clave === "Admin12345678") { // Estos son los accesos que deje quedamos
-      navigate("/admin");
-    } else {
-      alert("Usuario o contraseña incorrectos");
+    if (usuario === "") {
+      alert("Usuario is required");
+      return;
     }
-  };
+    if (pass === "") {
+      alert("Password is required");
+      return;
+    }
 
+    // getAuthUsers(usuario, pass)
+    //   .then((response) => {
+    //     if (response.data) {
+    //       navigate("/admin");
+    //     } else {
+    //       alert("Usuario o contraseña incorrectos");
+    //     }
+    //   }
+    //   )
+  };
   return (
     <div className="login-body p-0 m-0">
       <div className="login-body p-0 m-0">

@@ -8,7 +8,7 @@ const router = express.Router();
 The constructor then defines the routes for the API */
 class ProductController {
   constructor(app) {
-    //getAuthUsers
+    // getAuthUsers
     router.post("/authUsers", product.getAuthUsers);
 
     // getIndex
@@ -20,49 +20,49 @@ class ProductController {
     // getPortada
     router.post("/portada", product.getPortada);
 
-    //getComparativoCliente
+    // getComparativoCliente
     router.get("/comparativoCliente", product.getComparativoCliente);
 
-    //getPortal_Rendi_Cortes_Select
+    // getPortal_Rendi_Cortes_Select
     router.post(
       "/portalRendiCortesSelect",
       product.getPortal_Rendi_Cortes_Select
     );
 
-    //getSp_Portal_Rendi_Envios_Select
+    // getSp_Portal_Rendi_Envios_Select
     router.post(
       "/portalRendiEnviosSelect",
       product.getSp_Portal_Rendi_Envios_Select
     );
 
-    //getSp_Portal_Rendi_Proveedores_Select
+    // getSp_Portal_Rendi_Proveedores_Select
     router.get(
       "/portalRendiProveedoresSelect",
       product.getSp_Portal_Rendi_Proveedores_Select
     );
 
-    //getToneladasTotales
+    // getToneladasTotales
     router.get("/toneladasTotales", product.getToneladasTotales);
 
-    //getSp_Portal_Rendi_Lotes_Select
+    // getSp_Portal_Rendi_Lotes_Select
     router.post(
       "/portalRendiLotesSelect",
       product.getSp_Portal_Rendi_Lotes_Select
     );
 
-    //getToneladasTotalesTabla
+    // getToneladasTotalesTabla
     router.post("/toneladasTotalesTabla", product.getToneladasTotalesTabla);
 
-    //getComboLotes
+    // getComboLotes
     router.post("/comboLotes", product.getComboLotes);
 
-    //getGraficarResumen
+    // getGraficarResumen
     router.get("/graficarResumen", product.getGraficarResumen);
 
-    //getDetalleEstadoCuenta
+    // getDetalleEstadoCuenta
     router.get("/detalleEstadoCuenta", product.getDetalleEstadoCuenta);
 
-    //getCreditoActivosTabla
+    // getCreditoActivosTabla
     router.get("/creditoActivosTabla", product.getCreditoActivosTabla);
 
     /* Telling the app to use the router object for the routes that start with /api/v1. */
