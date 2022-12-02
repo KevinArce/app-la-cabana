@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //colocar host de la api
-const urlBase = "";
+const urlBase = "http://localhost:4001/api/v1";
 
 /**
  * @param {string}  url url a la cual consultar

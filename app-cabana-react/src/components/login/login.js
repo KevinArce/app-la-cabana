@@ -3,8 +3,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./assets/login.css";
 import logo from "./assets/img/logo.png";
 import imgFloating from "./assets/img/img-floating.png";
-//import { getAuthUsers } from "../../../../Api/modules/product/product.controller";
-
+import serviceApi from "../../services/services";
 
 const Login = () => {
   // ocultar y mostrar contraseña
@@ -29,24 +28,23 @@ const Login = () => {
   };
 
   //Add a password validation function
-  const validatePassword = (password) => {
-    if (password.length < 8) {
-      return "Password must be at least 8 characters";
-    }
-    if (password.search(/[a-z]/i) < 0) {
-      return "Password must contain at least one letter.";
-    }
-    if (password.search(/[0-9]/) < 0) {
-      return "Password must contain at least one digit.";
-    }
-    return "";
-  };
+  // const validatePassword = (password) => {
+  //   if (password.length < 3) {
+  //     return "Password must be at least 8 characters";
+  //   }
+  //   if (password.search(/[a-z]/i) < 0) {
+  //     return "Password must contain at least one letter.";
+  //   }
+  //   if (password.search(/[0-9]/) < 0) {
+  //     return "Password must contain at least one digit.";
+  //   }
+  //   return "";
+  // };
 
-  // Add a username validation function
   const handleSubmit = (evnt) => {
     evnt.preventDefault();
     const { usuario, pass } = formData;
-    const passwordError = validatePassword(pass);
+    const passwordError = pass;
     if (passwordError) {
       alert(passwordError);
       return;
@@ -60,15 +58,28 @@ const Login = () => {
       return;
     }
 
-    // getAuthUsers(usuario, pass)
-    //   .then((response) => {
-    //     if (response.data) {
-    //       navigate("/admin");
-    //     } else {
-    //       alert("Usuario o contraseña incorrectos");
-    //     }
-    //   }
-    //   )
+    serviceApi.post("authUsers", formData).then((response) => {
+      console.log(response);
+      // Save the response in the local storage
+      const dataUserlogin = localStorage.setItem(
+        "dataUserlogin",
+        JSON.stringify(response.data)
+      );
+      // Show only the nomProv from the response
+      const nomProv = localStorage.setItem(
+        "nomProv",
+        JSON.stringify(response.data.nomProv)
+      );
+      //const user = localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
+      //const nomProveedor = localStorage.setItem("nomProv", JSON.stringify(response.data.nomProv));
+
+      if (response.data.error === 0) {
+        navigate("/admin");
+      } else {
+        alert(response.data.message);
+      }
+    }
+    );
   };
   return (
     <div className="login-body p-0 m-0">
