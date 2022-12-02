@@ -4,9 +4,36 @@ const productMssql = require("./product.mssql");
 class product {
   //getAuthUsers
   async getAuthUsers(req, res) {
+    console.log(req);
     try {
-      const result = await productMssql.getAuthUsers();
-      res.send(result);
+      const result = await productMssql.getAuthUsers(
+        req.body.usuario,
+        req.body.clave,
+        req.body.nomProv
+      );
+
+      if (result.length > 0) {
+        let _result = {
+          usuario: result[0].USUARIO,
+          codProv: result[0].codProv,
+          nomProv: result[0].nomProv,
+          tipo: result[0].tipo,
+        };
+
+        let r = {
+          error: 0,
+          mensaje: "Usuario y contraseña correctos",
+          data: _result,
+        };
+        res.send(r);
+      } else {
+        let r = {
+          error: 1,
+
+          message: "Usuario y/o contraseña incorrecta",
+        };
+        res.send(r);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -14,9 +41,26 @@ class product {
 
   //getIndex
   async getIndex(req, res) {
+    console.log(req);
+
     try {
       const result = await productMssql.getIndex();
-      res.send(result);
+      req.body = result[0].Zafra;
+      if (result.length > 0) {
+        let _result = {
+          zafra: result[0].Zafra,
+        };
+        let r = {
+          data: _result,
+        };
+        res.send(r);
+      } else {
+        let r = {
+          error: 1,
+          message: "Vacio",
+        };
+        res.send;
+      }
     } catch (error) {
       console.log(error);
     }

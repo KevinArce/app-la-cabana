@@ -2,10 +2,13 @@
 const express = require("express");
 /* Importing the body-parser module. */
 const bodyparser = require("body-parser");
+/* It's allowing cross-origin requests. */
+const cors = require("cors");
 
 /* Creating an instance of the express module. */
 const app = express();
-
+/* It's allowing cross-origin requests. */
+app.use(cors());
 /**
  * The function is called init() and it's an async function. It uses the bodyparser module to parse the
  * body of the request. It then requires the approuting module and creates a new instance of it. It

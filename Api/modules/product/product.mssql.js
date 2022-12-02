@@ -6,6 +6,7 @@ class ProductMSSql {
   // Create an authUsers to make a request to the database taking $user and $pass as parameters
   async getAuthUsers(usuario, pass) {
     //DONE
+    console.log(usuario, pass);
     try {
       const conn = await mssqlcon.getConnection();
       const result = await conn
