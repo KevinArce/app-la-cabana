@@ -69,12 +69,13 @@ class ProductMSSql {
   }
 
   // Create a ComparativoCliente to get all values from the database
-  async getComparativoCliente() {
+  async getComparativoCliente(client) {
     // Pendiente RequestError: Could not find stored procedure 'LCMAESTROZAF..ComparativoCliente'.
     try {
       const conn = await mssqlcon.getConnection();
       const result = await conn
         .request()
+        .input("client", mssql.VarChar, client)
         .execute("LCMAESTROZAF..ComparativoCliente");
       return result.recordset;
     } catch (error) {

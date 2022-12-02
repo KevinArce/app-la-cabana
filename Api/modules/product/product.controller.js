@@ -24,7 +24,7 @@ class ProductController {
     router.post("/portada", cors(), product.getPortada);
 
     // getComparativoCliente
-    router.get("/comparativoCliente", cors(), product.getComparativoCliente);
+    router.post("/comparativoCliente", cors(), product.getComparativoCliente);
 
     // getPortal_Rendi_Cortes_Select
     router.post(

@@ -44,10 +44,7 @@ class product {
     console.log(req);
 
     try {
-      const result = await productMssql.getIndex(
-        req.body.Zafra,
-        );
-      ;
+      const result = await productMssql.getIndex(req.body.Zafra);
       if (result.length > 0) {
         let _result = {
           Zafra: result[0].Zafra,
@@ -70,37 +67,38 @@ class product {
 
   //getLiquidacion
   async getLiquidacion(req, res) {
+    console.log(req);
     try {
       const result = await productMssql.getLiquidacion(
         req.body.corte,
-        req.body.zafra,
-        );
-        if (result.length > 0) {
-          let _result = {
-            corte: result[0].corte,
-            zafra: result[0].zafra,
-          };
-          let r = {
-            data: _result,
-          };
-          res.send(r);
-        } else {
-          let r = {
-            error: 1,
-            message: "Vacio",
-          }; 
-          res.send(r);
-        }
-      } catch (error) {
-        console.log(error);
+        req.body.zafra
+      );
+      if (result.length > 0) {
+        let _result = {
+          corte: result[0].corte,
+          zafra: result[0].zafra,
+        };
+        let r = {
+          data: _result,
+        };
+        res.send(r);
+      } else {
+        let r = {
+          error: 1,
+          message: "Vacio",
+        };
+        res.send(r);
       }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   //getPortada
   async getPortada(req, res) {
     try {
-      const ZAFRA = req.body;
-      const Proveedor = req.body;
+      const ZAFRA = req.body.ZAFRA;
+      const Proveedor = req.body.Proveedor;
       const result = await productMssql.getPortada(ZAFRA, Proveedor);
       res.send(result);
     } catch (error) {
@@ -110,9 +108,24 @@ class product {
 
   //getComparativoCliente
   async getComparativoCliente(req, res) {
+    console.log(req);
     try {
-      const result = await productMssql.getComparativoCliente();
-      res.send(result);
+      const result = await productMssql.getComparativoCliente(req.body.client);
+      if (result.length > 0) {
+        let _result = {
+          client: result[0].client,
+        };
+        let r = {
+          data: _result,
+        };
+        res.send(r);
+      } else {
+        let r = {
+          error: 1,
+          message: "Vacio",
+        };
+        res.send(r);
+      }
     } catch (error) {
       console.log(error);
     }
