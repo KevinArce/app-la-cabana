@@ -44,11 +44,13 @@ class product {
     console.log(req);
 
     try {
-      const result = await productMssql.getIndex();
-      req.body = result[0].Zafra;
+      const result = await productMssql.getIndex(
+        req.body.Zafra,
+        );
+      ;
       if (result.length > 0) {
         let _result = {
-          zafra: result[0].Zafra,
+          Zafra: result[0].Zafra,
         };
         let r = {
           data: _result,
@@ -69,11 +71,29 @@ class product {
   //getLiquidacion
   async getLiquidacion(req, res) {
     try {
-      const result = await productMssql.getLiquidacion();
-      res.send(result);
-    } catch (error) {
-      console.log(error);
-    }
+      const result = await productMssql.getLiquidacion(
+        req.body.corte,
+        req.body.zafra,
+        );
+        if (result.length > 0) {
+          let _result = {
+            corte: result[0].corte,
+            zafra: result[0].zafra,
+          };
+          let r = {
+            data: _result,
+          };
+          res.send(r);
+        } else {
+          let r = {
+            error: 1,
+            message: "Vacio",
+          }; 
+          res.send(r);
+        }
+      } catch (error) {
+        console.log(error);
+      }
   }
 
   //getPortada
