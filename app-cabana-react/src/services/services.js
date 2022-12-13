@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //colocar host de la api
-const urlBase = "http://localhost:4001/api/v1";
+const urlBase = "http://localhost:8080/api/v1";
 
 /**
  * @param {string}  url url a la cual consultar
@@ -69,12 +69,48 @@ const del = (url = "", headers = {}) =>
     },
   });
 
+const authUsers = (url = "/authUsers", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      //"Access-Control-Allow-Origin": "*",
+
+      ...headers,
+    },
+  });
+
+  const getIndex = (url = "/getIndex", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      //"Access-Control-Allow-Origin": "*",
+
+      ...headers,
+    },
+  });
+
+  const getLiquidacion = (url = "/getLiquidacion", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      //"Access-Control-Allow-Origin": "*",
+
+      ...headers,
+    },
+  });
+
 const serviceApi = {
   get,
   post,
   put,
   postUpload,
   delete: del,
+  authUsers,
+  getIndex,
+  getLiquidacion,
 };
 
 export default serviceApi;

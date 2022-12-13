@@ -27,59 +27,59 @@ const Login = () => {
     setPasswordType("password");
   };
 
-  //Add a password validation function
-  // const validatePassword = (password) => {
-  //   if (password.length < 3) {
-  //     return "Password must be at least 8 characters";
-  //   }
-  //   if (password.search(/[a-z]/i) < 0) {
-  //     return "Password must contain at least one letter.";
-  //   }
-  //   if (password.search(/[0-9]/) < 0) {
-  //     return "Password must contain at least one digit.";
-  //   }
-  //   return "";
-  // };
+  const validatePassword = (password) => {
+    if (password.length < 3) {
+      return "Password must be at least 3 characters";
+    }
+    if (password.search(/[a-z]/i) < 0) {
+      return "Password must contain at least one letter.";
+    }
+    if (password.search(/[0-9]/) < 0) {
+      return "Password must contain at least one digit.";
+    }
+    return "";
+  };
 
-  // const handleSubmit = (evnt) => {
-  //   evnt.preventDefault();
-  //   const { usuario, pass } = formData;
-  //   const passwordError = pass;
-  //   if (passwordError) {
-  //     alert(passwordError);
-  //     return;
-  //   }
-  //   if (usuario === "") {
-  //     alert("Usuario is required");
-  //     return;
-  //   }
-  //   if (pass === "") {
-  //     alert("Password is required");
-  //     return;
-  //   }
+  const handleSubmit = (evnt) => {
+    evnt.preventDefault();
+    const { usuario, pass } = formData;
+    const passwordError = pass;
+    if (passwordError) {
+      alert(passwordError);
+      return;
+    }
+    if (usuario === "") {
+      alert("Usuario is required");
+      return;
+    }
+    if (pass === "") {
+      alert("Password is required");
+      return;
+    }
 
-  //   // serviceApi.post("authUsers", formData).then((response) => {
-  //   //   console.log(response);
-  //   //   // Save the response in the local storage
-  //   //   // const dataUserlogin = localStorage.setItem(
-  //   //   //   "dataUserlogin",
-  //   //   //   JSON.stringify(response.data)
-  //   //   // );
-  //   //   // // Show only the nomProv from the response
-  //   //   // const nomProv = localStorage.setItem(
-  //   //   //   "nomProv",
-  //   //   //   JSON.stringify(response.data.nomProv)
-  //   //   // );
-  //   //   //const user = localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
-  //   //   //const nomProveedor = localStorage.setItem("nomProv", JSON.stringify(response.data.nomProv));
+    serviceApi.post("authUsers", formData).then((response) => {
+      console.log(response);
+      // Save the response in the local storage
+      // const dataUserlogin = localStorage.setItem(
+      //   "dataUserlogin",
+      //   JSON.stringify(response.data)
+      // );
+      // // Show only the nomProv from the response
+      // const nomProv = localStorage.setItem(
+      //   "nomProv",
+      //   JSON.stringify(response.data.nomProv)
+      // );
+      //const user = localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
+      //const nomProveedor = localStorage.setItem("nomProv", JSON.stringify(response.data.nomProv));
 
-  //   //   if (response.data.error === 0) {
-  //   //     navigate("/admin");
-  //   //   } else {
-  //   //     alert(response.data.message);
-  //   //   }
-  //   // });
-  // };
+      if (response.data.error === 0) {
+        navigate("/admin");
+      } else {
+        alert(response.data.message);
+      }
+    });
+  };
+
   return (
     <div className="login-body p-0 m-0">
       <div className="login-body p-0 m-0">
@@ -121,9 +121,9 @@ const Login = () => {
           <div className="d-flex flex-column justify-content-center align-items-center mt-5">
             <button
               className={"btn-login"}
-              // onClick={(e) => {
-              //   handleSubmit(e);
-              // }}
+              onClick={(e) => {
+                handleSubmit(e);
+              }}
             >
               Ingresar
             </button>

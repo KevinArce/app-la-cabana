@@ -5,19 +5,10 @@ import group1 from "./assets/group1.svg";
 import serviceApi from "../../services/services";
 import Dropdown from "react-bootstrap/Dropdown";
 
+
 const Home = () => {
   // const nomProv = localStorage.getItem("nomProv");
 
-  //Use serviceApi to get the data from the server and display it in the class num-2021-2022
-  serviceApi.get("index").then((response) => {
-    localStorage.setItem("data", JSON.stringify(response.data));
-    console.log(response);
-    if (response.data.error === 0) {
-      return response.data;
-    } else {
-      return "No data";
-    }
-  });
 
   return (
     <div className="portada">
@@ -56,7 +47,14 @@ const Home = () => {
           </Dropdown.Menu>
         </Dropdown>
 
-        <button className="mt-2 rectangle-193">
+        <button  
+        onClick={() => {
+          serviceApi.get("getLiquidacion").then((response) => {
+            console.log(response);
+            return response;
+          });
+        }}
+        className="mt-2 rectangle-193">
           <span className="ver-liquidaciones">Ver liquidaciones</span>
         </button>
       </div>
@@ -64,7 +62,9 @@ const Home = () => {
       <div className="mt-4 stats-container">
         <div className="flex-container-3">
           <span className="title-stat">Zafra</span>
-          <span className="num-stat">2021 - 2022</span>
+          <span className="num-stat">
+            {}
+          </span>
         </div>
         <div className="flex-container-3">
           <span className="title-stat">Toneladas totales</span>
