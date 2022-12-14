@@ -59,20 +59,14 @@ const Login = () => {
 
     serviceApi.post("authUsers", formData).then((response) => {
       console.log(response);
-      // Save the response in the local storage
-      // const dataUserlogin = localStorage.setItem(
-      //   "dataUserlogin",
-      //   JSON.stringify(response.data)
-      // );
-      // // Show only the nomProv from the response
-      // const nomProv = localStorage.setItem(
-      //   "nomProv",
-      //   JSON.stringify(response.data.nomProv)
-      // );
-      //const user = localStorage.setItem("usuario", JSON.stringify(response.data.usuario));
-      //const nomProveedor = localStorage.setItem("nomProv", JSON.stringify(response.data.nomProv));
 
       if (response.data.error === 0) {
+        localStorage.setItem("nombre", response.data.data.nombre);
+        localStorage.setItem("usuario", response.data.data.usuario);
+        localStorage.setItem("codProv", response.data.data.codProv);
+        localStorage.setItem("nomProv", response.data.data.nomProv);
+        localStorage.setItem("tipo", response.data.data.tipo);
+
         navigate("/admin");
       } else {
         alert(response.data.message);

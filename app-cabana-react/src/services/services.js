@@ -17,9 +17,9 @@ const readUrl = (url = "") =>
 const get = (url = "", headers = {}) =>
   axios.get(readUrl(url), {
     headers: {
-      Accept: "application/json; charset=UTF-8",
+      Accept: "application/json",
       "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
+      //"Access-Control-Allow-Origin": "*",
 
       ...headers,
     },

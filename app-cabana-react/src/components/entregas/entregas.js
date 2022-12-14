@@ -4,6 +4,7 @@ import "./entregas.css";
 import vector35 from "./assets/vector35.svg";
 import eparrowUp from "./assets/eparrowUp.svg";
 import group8 from "./assets/group8.svg";
+import ZafraIndex from "../home/home";
 
 const Entregas = () => {
   return (
@@ -16,7 +17,7 @@ const Entregas = () => {
       <div className="rectangle-20">
         <div className="flex-container-2">
           <span className="zafra">Zafra</span>
-          <span className="num-2021-2022">2021 - 2022</span>
+          <ZafraIndex />
         </div>
         <img className="eparrow-up" src={eparrowUp} alt="group" />
       </div>
