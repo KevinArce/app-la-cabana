@@ -102,7 +102,7 @@ const authUsers = (url = "/authUsers", body = {}, headers = {}) =>
     },
   });
 
-  const getPortalRendiCortesSelect = (url = "/getPortalRendiCortesSelect", body = {}, headers = {}) =>
+  const getPortalRendiCortesSelect = (url = "/getPortal_Rendi_Cortes_Select", body = {}, headers = {}) =>
   axios.post(readUrl(url), body, {
     headers: {
       Accept: "application/json",
