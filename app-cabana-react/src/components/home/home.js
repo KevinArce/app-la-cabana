@@ -28,10 +28,8 @@ function ZafraIndex() {
       console.log(data);
       setData(data.data);
       //setZafra(data.data[0].Zafra);
-      setZafra('2021-2022');
+      setZafra("2021-2022");
     });
-    
-  
   }, []);
 
   return (
@@ -82,11 +80,8 @@ function ToneladasTotales() {
   );
 }
 
-//Portal_Rendi_Cortes_Select send the values zafra and codProv to the API and return the values of the corte, fecini, fecfin and ZAFRA
 function Portal_Rendi_Cortes_Select() {
   const [data, setData] = useState([]);
-  //const codclie = "JMARI005"; //localStorage.getItem("codProv");
-  //const zafra = "2021-2022"; //localStorage.getItem("zafra");
   const zafra = useZafraStore((state) => state.zafra);
   const { codProv } = useDetailsStore((state) => state.details);
 
