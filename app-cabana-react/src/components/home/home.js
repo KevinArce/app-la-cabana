@@ -22,6 +22,7 @@ function ZafraIndex() {
       const { data } = response;
       console.log(data);
       setData(data.data);
+      const zafra = localStorage.setItem("zafra", data.data[0].Zafra);
     });
   }, []);
 
@@ -73,6 +74,45 @@ function ToneladasTotales() {
   );
 }
 
+//Portal_Rendi_Cortes_Select send the values zafra and codProv to the API and return the values of the corte, fecini, fecfin and ZAFRA
+function Portal_Rendi_Cortes_Select() {
+  const [data, setData] = useState([]);
+  const codProv = localStorage.getItem("codProv");
+  const zafra = localStorage.getItem("zafra");
+
+  axios.post(urlBase + "/getPortalRendiCortesSelect", {
+    zafra: zafra,
+    codProv: codProv,
+  });
+
+  useEffect(() => {
+    serviceApi
+      .post("getPortalRendiCortesSelect", { zafra: zafra, codProv: codProv })
+      .then((response) => {
+        const { data } = response;
+        console.log(data);
+        setData(data.data);
+      });
+  }, [zafra, codProv]);
+
+  return (
+    <div>
+      {data.length > 0 ? (
+        data.map((item, index) => (
+          <div key={index}>
+            <Dropdown.Item>{item.fecini}</Dropdown.Item>
+            <Dropdown.Item>{item.CORTE}</Dropdown.Item>
+            <Dropdown.Item>{item.fecfin}</Dropdown.Item>
+          </div>
+        ))
+      ) : (
+        <Dropdown.Item>No hay datos</Dropdown.Item>
+      )}
+    </div>
+  );
+}
+
+
 const Home = () => {
   return (
     <div className="portada">
@@ -105,9 +145,7 @@ const Home = () => {
           </Dropdown.Toggle>
 
           <Dropdown.Menu>
-            <Dropdown.Item>Action</Dropdown.Item>
-            <Dropdown.Item>Another action</Dropdown.Item>
-            <Dropdown.Item>Something else</Dropdown.Item>
+            <Portal_Rendi_Cortes_Select />
           </Dropdown.Menu>
         </Dropdown>
 

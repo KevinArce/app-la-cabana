@@ -102,6 +102,18 @@ const authUsers = (url = "/authUsers", body = {}, headers = {}) =>
     },
   });
 
+  const getPortalRendiCortesSelect = (url = "/getPortalRendiCortesSelect", body = {}, headers = {}) =>
+  axios.post(readUrl(url), body, {
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      //"Access-Control-Allow-Origin": "*",
+
+      ...headers,
+    },
+  });
+
+
 const serviceApi = {
   get,
   post,
@@ -111,6 +123,7 @@ const serviceApi = {
   authUsers,
   getIndex,
   getLiquidacion,
+  getPortalRendiCortesSelect,
 };
 
 export default serviceApi;
