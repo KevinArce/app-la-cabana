@@ -78,7 +78,7 @@ function ToneladasTotales() {
 function Portal_Rendi_Cortes_Select() {
   const [data, setData] = useState([]);
   const codclie = localStorage.getItem("codProv");
-  const zafra = "2021-2022"; //localStorage.getItem("zafra");
+  const zafra = '2021-2022'; //localStorage.getItem("zafra");
 
   axios.post(urlBase + "/getPortal_Rendi_Cortes_Select", {
     zafra: zafra,
@@ -98,26 +98,21 @@ function Portal_Rendi_Cortes_Select() {
   return (
     <div>
       {data.length > 0 ? (
-        data.map(
-          (item, index) => (
-            console.log(item.fecini),
-            console.log(item.CORTE),
-            console.log(item.fecfin),
-            (
-              <div key={index}>
-                <Dropdown.Item>
-                  Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}
-                </Dropdown.Item>
-              </div>
-            )
-          )
-        )
+        data.map((item, index) => (    
+          console.log(item.fecini),
+          console.log(item.CORTE),
+          console.log(item.fecfin),      
+          <div key={index}>
+            <Dropdown.Item>Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}</Dropdown.Item>
+          </div>
+        ))
       ) : (
         <Dropdown.Item>No hay datos</Dropdown.Item>
       )}
     </div>
   );
 }
+
 
 const Home = () => {
   return (
@@ -162,7 +157,7 @@ const Home = () => {
               return response;
             });
           }}
-          className="mt-4 rectangle-193"
+          className="mt-2 rectangle-193"
         >
           <span className="ver-liquidaciones">Ver liquidaciones</span>
         </button>
