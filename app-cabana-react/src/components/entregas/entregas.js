@@ -1,13 +1,10 @@
 import React from "react";
 import "./entregas.css";
-import vector35 from "./assets/vector35.svg";
-import eparrowUp from "./assets/eparrowUp.svg";
 import group8 from "./assets/group8.svg";
-import ZafraIndex from "../home/home";
 
 const Entregas = () => {
   return (
-    <div className="entregas">
+    <div className="padding-init entregas">
       <div className="mt-3 flex-container-2">
         <div className="mb-0">
           <span className="txt-custom01">Entregas de envios</span>
@@ -37,8 +34,180 @@ const Entregas = () => {
           <button className="btn-action">PDF</button>
         </div>
       </div>
-      
-      
+
+      <div className="mt-3 container-table">
+        <table className="table-default">
+          <tr className="header-default">
+            <th>FECMOV</th>
+            <th>NO ENVIO</th>
+            <th>FINCA</th>
+            <th>NOMLOTE</th>
+            <th>TM</th>
+            <th>POL CAL</th>
+            <th>REN. KG/TM</th>
+            <th>HUMEDAD %</th>
+            <th>HORAS QUEMA H</th>
+            <th>CORTE</th>
+            <th>ESTADO CORTE</th>
+          </tr>
+          <tr>
+            <td>Soleado</td>
+            <td>Mayormente soleado</td>
+            <td>Parcialmente nublado</td>
+            <td>Soleado</td>
+            <td>Mayormente soleado</td>
+            <td>Parcialmente nublado</td>
+            <td>Soleado</td>
+            <td>Mayormente soleado</td>
+            <td>Parcialmente nublado</td>
+            <td>Soleado</td>
+            <td>Mayormente soleado</td>
+          </tr>
+          <tr>
+            <td>19°C</td>
+            <td>17°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+            <td>12°C</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+          <tr>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+            <td>S 16 km/h</td>
+            <td>E 13 km/h</td>
+            <td>E 11 km/h</td>
+          </tr>
+        </table>
+      </div>
     </div>
   );
 };
