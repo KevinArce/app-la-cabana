@@ -8,9 +8,6 @@ import useDetailsStore from "../../store/useDetailsStore";
 
 const Login = () => {
   const setDetails = useDetailsStore((state) => state.setDetails);
-
-
-  
   // ocultar y mostrar contraseña
   const [passwordType, setPasswordType] = useState("password");
 
@@ -66,7 +63,6 @@ const Login = () => {
       console.log(response);
 
       if (response.data.error === 0) {
-
         setDetails({
           usuario: response.data.data.usuario,
           nombre: response.data.data.nombre,

@@ -86,7 +86,7 @@ function Portal_Rendi_Cortes_Select() {
   const { codProv } = useDetailsStore((state) => state.details);
 
   useEffect(() => {
-    if (zafra != "" && codProv != "") {
+    if (zafra !== "" && codProv !== "") {
       serviceApi
         .post("getPortal_Rendi_Cortes_Select", {
           zafra: zafra,

@@ -1,12 +1,8 @@
 import React from "react";
 import "./entregas.css";
 import group8 from "./assets/group8.svg";
+import EntregasEnviosStore from "../../store/useEntregasEnviosStore";
 
-function EntregasEnviosStore () {
-  const [data, setData] = useState([]);
-  const entregasEnvios = useEntregasEnviosStore((state) => state.entregasEnvios);
-  const setEntregasEnvios = useEntregasEnviosStore((state) => state.setEntregasEnvios);
-}
 
 const Entregas = () => {
   return (
