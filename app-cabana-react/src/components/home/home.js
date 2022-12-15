@@ -6,6 +6,7 @@ import serviceApi from "../../services/services";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
 import useZafraStore from "../../store/useZafraStore";
+import useDetailsStore from "../../store/useDetailsStore";
 
 const urlBase = "http://localhost:8080/api/v1";
 
@@ -30,6 +31,12 @@ function ZafraIndex() {
       
     // });
     setZafra('2021-2022');
+    setData([{
+      fecini: "16-12-2022",
+      fecfin: "31-12-2022",
+      ZAFRA: "2021-2022",
+      CORTE: "3",
+  }]);
   }, []);
 
   return (
@@ -50,7 +57,7 @@ function ZafraIndex() {
 function ToneladasTotales() {
   const [data, setData] = useState([]);
 
-  const usuario = localStorage.getItem("usuario");
+  const { usuario } = useDetailsStore((state) => state.details);
   axios.post(urlBase + "/getToneladasTotales", {
     client: usuario,
   });
@@ -83,16 +90,17 @@ function ToneladasTotales() {
 //Portal_Rendi_Cortes_Select send the values zafra and codProv to the API and return the values of the corte, fecini, fecfin and ZAFRA
 function Portal_Rendi_Cortes_Select() {
   const [data, setData] = useState([]);
-  const codclie = "JMARI005"; //localStorage.getItem("codProv");
+  //const codclie = "JMARI005"; //localStorage.getItem("codProv");
   //const zafra = "2021-2022"; //localStorage.getItem("zafra");
   const zafra = useZafraStore((state) => state.zafra);
+  const { codProv } = useDetailsStore((state) => state.details);
 
   useEffect(() => {
-    if (zafra != "" && codclie != "") {
+    if (zafra != "" && codProv != "") {
       serviceApi
         .post("getPortal_Rendi_Cortes_Select", {
           zafra: zafra,
-          codclie: codclie,
+          codclie: codProv,
         })
         .then((response) => {
           const { data } = response;
@@ -104,7 +112,7 @@ function Portal_Rendi_Cortes_Select() {
           }
         });
     }
-  }, [zafra, codclie]);
+  }, [zafra, codProv]);
 
   return (
     <div>

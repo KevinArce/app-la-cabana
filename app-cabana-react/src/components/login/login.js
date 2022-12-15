@@ -4,8 +4,13 @@ import "./assets/login.css";
 import logo from "./assets/img/logo.png";
 import imgFloating from "./assets/img/img-floating.png";
 import serviceApi from "../../services/services";
+import useDetailsStore from "../../store/useDetailsStore";
 
 const Login = () => {
+  const setDetails = useDetailsStore((state) => state.setDetails);
+
+
+  
   // ocultar y mostrar contraseña
   const [passwordType, setPasswordType] = useState("password");
 
@@ -61,11 +66,14 @@ const Login = () => {
       console.log(response);
 
       if (response.data.error === 0) {
-        localStorage.setItem("nombre", response.data.data.nombre);
-        localStorage.setItem("usuario", response.data.data.usuario);
-        localStorage.setItem("codProv", response.data.data.codProv);
-        localStorage.setItem("nomProv", response.data.data.nomProv);
-        localStorage.setItem("tipo", response.data.data.tipo);
+
+        setDetails({
+          usuario: response.data.data.usuario,
+          nombre: response.data.data.nombre,
+          codProv: response.data.data.codProv,
+          nomProv: response.data.data.nomProv,
+          tipo: response.data.data.tipo,
+        });
 
         navigate("/admin");
       } else {
