@@ -77,32 +77,33 @@ function ToneladasTotales() {
 //Portal_Rendi_Cortes_Select send the values zafra and codProv to the API and return the values of the corte, fecini, fecfin and ZAFRA
 function Portal_Rendi_Cortes_Select() {
   const [data, setData] = useState([]);
-  const codProv = localStorage.getItem("codProv");
-  const zafra = localStorage.getItem("zafra");
+  const codclie = localStorage.getItem("codProv");
+  const zafra = '2021-2022'; //localStorage.getItem("zafra");
 
-  axios.post(urlBase + "/getPortalRendiCortesSelect", {
+  axios.post(urlBase + "/getPortal_Rendi_Cortes_Select", {
     zafra: zafra,
-    codProv: codProv,
+    codclie: codclie,
   });
 
   useEffect(() => {
     serviceApi
-      .post("getPortalRendiCortesSelect", { zafra: zafra, codProv: codProv })
+      .post("getPortal_Rendi_Cortes_Select", { zafra: zafra, codclie: codclie })
       .then((response) => {
         const { data } = response;
         console.log(data);
         setData(data.data);
       });
-  }, [zafra, codProv]);
+  }, [zafra, codclie]);
 
   return (
     <div>
       {data.length > 0 ? (
-        data.map((item, index) => (
+        data.map((item, index) => (    
+          console.log(item.fecini),
+          console.log(item.CORTE),
+          console.log(item.fecfin),      
           <div key={index}>
-            <Dropdown.Item>{item.fecini}</Dropdown.Item>
-            <Dropdown.Item>{item.CORTE}</Dropdown.Item>
-            <Dropdown.Item>{item.fecfin}</Dropdown.Item>
+            <Dropdown.Item>Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}</Dropdown.Item>
           </div>
         ))
       ) : (
