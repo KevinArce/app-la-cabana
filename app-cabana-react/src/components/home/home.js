@@ -23,20 +23,15 @@ function ZafraIndex() {
   const setZafra = useZafraStore((state) => state.setZafra);
 
   useEffect(() => {
-    // serviceApi.get("getIndex").then((response) => {
-    //   const { data } = response;
-    //   console.log(data);
-    //   setData(data.data);
-    //   //setZafra(data.data[0].Zafra);
-      
-    // });
-    setZafra('2021-2022');
-    setData([{
-      fecini: "16-12-2022",
-      fecfin: "31-12-2022",
-      ZAFRA: "2021-2022",
-      CORTE: "3",
-  }]);
+    serviceApi.get("getIndex").then((response) => {
+      const { data } = response;
+      console.log(data);
+      setData(data.data);
+      //setZafra(data.data[0].Zafra);
+      setZafra('2021-2022');
+    });
+    
+  
   }, []);
 
   return (
@@ -70,11 +65,11 @@ function ToneladasTotales() {
         console.log(data);
         setData(data.data);
       });
-  }, [usuario]);
+  }, []);
 
   return (
     <div>
-      {data.length > 0 ? (
+      {data && data.length > 0 ? (
         data.map((item, index) => (
           <div key={index}>
             <span>{item.TONAN}</span>
@@ -125,7 +120,7 @@ function Portal_Rendi_Cortes_Select() {
             (
               <div key={index}>
                 <Dropdown.Item>
-                  Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}
+                  Desde: {item.fecini} Hasta: {item.fecfin} Corte: {item.CORTE}
                 </Dropdown.Item>
               </div>
             )
