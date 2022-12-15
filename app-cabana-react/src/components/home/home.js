@@ -5,6 +5,7 @@ import group1 from "./assets/group1.svg";
 import serviceApi from "../../services/services";
 import Dropdown from "react-bootstrap/Dropdown";
 import axios from "axios";
+import useZafraStore from "../../store/useZafraStore";
 
 const urlBase = "http://localhost:8080/api/v1";
 
@@ -17,13 +18,18 @@ const tipo = localStorage.getItem("tipo");
 function ZafraIndex() {
   const [data, setData] = useState([]);
 
+  //const zafra = useZafraStore((state) => state.zafra);
+  const setZafra = useZafraStore((state) => state.setZafra);
+
   useEffect(() => {
-    serviceApi.get("getIndex").then((response) => {
-      const { data } = response;
-      console.log(data);
-      setData(data.data);
-      const zafra = localStorage.setItem("zafra", data.data[0].Zafra);
-    });
+    // serviceApi.get("getIndex").then((response) => {
+    //   const { data } = response;
+    //   console.log(data);
+    //   setData(data.data);
+    //   //setZafra(data.data[0].Zafra);
+      
+    // });
+    setZafra('2021-2022');
   }, []);
 
   return (
@@ -77,35 +83,46 @@ function ToneladasTotales() {
 //Portal_Rendi_Cortes_Select send the values zafra and codProv to the API and return the values of the corte, fecini, fecfin and ZAFRA
 function Portal_Rendi_Cortes_Select() {
   const [data, setData] = useState([]);
-  const codclie = localStorage.getItem("codProv");
-  const zafra = '2021-2022'; //localStorage.getItem("zafra");
-
-  axios.post(urlBase + "/getPortal_Rendi_Cortes_Select", {
-    zafra: zafra,
-    codclie: codclie,
-  });
+  const codclie = "JMARI005"; //localStorage.getItem("codProv");
+  //const zafra = "2021-2022"; //localStorage.getItem("zafra");
+  const zafra = useZafraStore((state) => state.zafra);
 
   useEffect(() => {
-    serviceApi
-      .post("getPortal_Rendi_Cortes_Select", { zafra: zafra, codclie: codclie })
-      .then((response) => {
-        const { data } = response;
-        console.log(data);
-        setData(data.data);
-      });
+    if (zafra != "" && codclie != "") {
+      serviceApi
+        .post("getPortal_Rendi_Cortes_Select", {
+          zafra: zafra,
+          codclie: codclie,
+        })
+        .then((response) => {
+          const { data } = response;
+          console.log("Data algo XD", data);
+          if (data.data && data.data.length > 0) {
+            setData(data.data);
+          } else {
+            setData([]);
+          }
+        });
+    }
   }, [zafra, codclie]);
 
   return (
     <div>
       {data.length > 0 ? (
-        data.map((item, index) => (    
-          console.log(item.fecini),
-          console.log(item.CORTE),
-          console.log(item.fecfin),      
-          <div key={index}>
-            <Dropdown.Item>Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}</Dropdown.Item>
-          </div>
-        ))
+        data.map(
+          (item, index) => (
+            console.log(item.fecini),
+            console.log(item.CORTE),
+            console.log(item.fecfin),
+            (
+              <div key={index}>
+                <Dropdown.Item>
+                  Desde {item.fecini} Hasta {item.fecfin} N {item.CORTE}
+                </Dropdown.Item>
+              </div>
+            )
+          )
+        )
       ) : (
         <Dropdown.Item>No hay datos</Dropdown.Item>
       )}
@@ -113,8 +130,12 @@ function Portal_Rendi_Cortes_Select() {
   );
 }
 
-
 const Home = () => {
+  const zafra = useZafraStore((state) => state.zafra);
+  //const setZafra = useZafraStore((state) => state.setZafra);
+  useEffect(() => {
+    console.log(zafra);
+  }, [zafra]);
   return (
     <div className="portada">
       <div className="container-user">
