@@ -2,12 +2,18 @@ import React, { useState, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import serviceApi from "../../services/services";
 import { useZafraStore, useDetailsStore } from "../../store";
-import carbonuserAvatarFi from "./assets/carbonuserAvatarFi.svg";
 import { Loader } from "../generalComponents";
+import carbonuserAvatarFi from "./assets/carbonuserAvatarFi.svg";
 import group1 from "./assets/group1.svg";
 import "./assets/home.css";
 
-const nombre = localStorage.getItem("nombre");
+/**
+ * orden jerarquico de importacion
+ * -React
+ * -librerias de terceros
+ * -servicios o stores
+ * -assets o componentes
+ */
 
 function PortalRendiCortesSelect({ zafra, codProv }) {
   const [data, setData] = useState([]);
@@ -87,7 +93,7 @@ const Home = () => {
           src={carbonuserAvatarFi}
           alt="group"
         />
-        <span className="txt-user-profile">{nombre}</span>
+        <span className="txt-user-profile">{details.nombre}</span>
       </div>
 
       <div className="mt-3 flex-container-2">
@@ -149,7 +155,7 @@ const Home = () => {
           </div>
           <div className="flex-container-3">
             <span className="title-stat">Toneladas totales</span>
-            {toneladasList && toneladasList.length > 0 ? (
+            {toneladasList.length > 0 ? (
               toneladasList.map((item, index) => (
                 <div key={index}>
                   <span>{item.TONAN}</span>

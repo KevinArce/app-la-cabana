@@ -40,10 +40,14 @@
 }
 
 .input-user {
-  border: 1px px solid #6c6a6a;
+  border: 1px solid #6c6a6a;
   border-radius: 10px;
   padding: 6px 11px;
   color: #6d6a6a !important;
+}
+
+.input-user.error {
+  border: 1px solid tomato;
 }
 
 .input-user:focus-visible {
@@ -115,4 +119,9 @@ img.floating-img {
 
 img.logo {
   width: 45%;
+}
+
+.text-danger {
+  font-size: 15px;
+  color: tomato;
 }

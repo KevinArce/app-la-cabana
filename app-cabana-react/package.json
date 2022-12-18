@@ -24,6 +24,7 @@
         "react-router-dom": "^6.3.0",
         "react-toastify": "^9.1.1",
         "web-vitals": "^2.1.4",
+        "yup": "^0.32.11",
         "zustand": "^4.1.5"
     },
     "devDependencies": {

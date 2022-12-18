@@ -61,7 +61,8 @@ const Table = ({ entregasList }) => {
         sortedRows.sort((a, b) => a.CORTE - b.CORTE);
         break;
       case "ESTADOCORTE":
-        sortedRows.sort((a, b) => a.ESTADOCORTE - b.ESTADOCORTE);
+        //usar localeCompare para ordenar strings
+        sortedRows.sort((a, b) => a.ESTADOCORTE.localeCompare(b.ESTADOCORTE));
         break;
       default:
         break;

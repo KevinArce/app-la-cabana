@@ -1,29 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
 import { ToastContainer, toast } from "react-toastify";
-import "./assets/login.css";
+import classNames from "classnames";
+import serviceApi from "../../services/services";
+import { loginSchema } from "../../validations";
+import { useDetailsStore } from "../../store";
 import logo from "./assets/img/logo.png";
 import imgFloating from "./assets/img/img-floating.png";
-import serviceApi from "../../services/services";
-import { useDetailsStore } from "../../store";
 import { Loader } from "../generalComponents";
+import "./assets/login.css";
 
 const Login = () => {
   const setDetails = useDetailsStore((state) => state.setDetails);
-  const [loading, setLoading] = useState(false);
-  // ocultar y mostrar contraseña
   const [passwordType, setPasswordType] = useState("password");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({ usuario: "", clave: "" });
-
-  const handleUsuarioChange = (evnt) => {
-    setFormData({ ...formData, usuario: evnt.target.value });
-  };
-  const handlePasswordChange = (evnt) => {
-    setFormData({ ...formData, clave: evnt.target.value });
-  };
   const togglePassword = () => {
     if (passwordType === "password") {
       setPasswordType("text");
@@ -45,53 +39,51 @@ const Login = () => {
   //   return "";
   // };
 
-  const handleSubmit = (evnt) => {
-    evnt.preventDefault();
-    setLoading(true);
-    const { usuario, pass } = formData;
-    const passwordError = pass;
-    if (passwordError) {
-      alert(passwordError);
-      return;
-    }
-    if (usuario === "") {
-      alert("Usuario is required");
-      return;
-    }
-    if (pass === "") {
-      alert("Password is required");
-      return;
-    }
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      password: "",
+    },
+    validationSchema: loginSchema,
+    validateOnChange: true,
+    validateOnBlur: true,
+    onSubmit: (values) => {
+      setLoading(true);
+      serviceApi
+        .post("authUsers", {
+          usuario: values.username,
+          clave: values.password,
+        })
+        .then((response) => {
+          setLoading(false);
+          if (response.data.error === 0) {
+            //save on local storage
+            const detailsObj = {
+              usuario: response.data.data.usuario,
+              nombre: response.data.data.nombre,
+              codProv: response.data.data.codProv,
+              nomProv: response.data.data.nomProv,
+              tipo: response.data.data.tipo,
+            };
 
-    serviceApi.post("authUsers", formData).then((response) => {
-      setLoading(false);
-      if (response.data.error === 0) {
-        //save on local storage
-        const detailsObj = {
-          usuario: response.data.data.usuario,
-          nombre: response.data.data.nombre,
-          codProv: response.data.data.codProv,
-          nomProv: response.data.data.nomProv,
-          tipo: response.data.data.tipo,
-        };
-
-        setDetails(detailsObj);
-        localStorage.setItem("details", JSON.stringify(detailsObj));
-        navigate("/admin");
-      } else {
-        setLoading(false);
-        toast.error(response.data.message, {
-          position: "top-center",
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
+            setDetails(detailsObj);
+            localStorage.setItem("details", JSON.stringify(detailsObj));
+            navigate("/admin");
+          } else {
+            setLoading(false);
+            toast.error(response.data.message, {
+              position: "top-center",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          }
         });
-      }
-    });
-  };
+    },
+  });
 
   return (
     <div className="login-body p-0 m-0">
@@ -102,23 +94,37 @@ const Login = () => {
         </div>
       </div>
 
-      <form action="">
+      <form onSubmit={formik.handleSubmit}>
         <h3 className="txt-login">Ingreso de Credenciales</h3>
         <div className="container-inputs mt-5">
           <input
-            className="input-user w-100"
+            className={classNames("input-user w-100", {
+              error: formik.touched.username && formik.errors.username,
+            })}
+            name="username"
             type="text"
-            required
-            onChange={handleUsuarioChange}
+            onChange={formik.handleChange}
+            value={formik.values.username}
+            onBlur={formik.handleBlur}
           />
+          <p className="text-danger">
+            {formik.touched.username && formik.errors.username}
+          </p>
         </div>
         <div className="container-inputs mt-4">
           <input
-            className="input-user w-100"
+            className={classNames("input-user w-100", {
+              error: formik.touched.password && formik.errors.password,
+            })}
             type={passwordType}
-            onChange={handlePasswordChange}
-            required
+            name="password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+            onBlur={formik.handleBlur}
           />
+          <p className="text-danger">
+            {formik.touched.password && formik.errors.password}
+          </p>
           <button
             className="btn-show-pass"
             type="button"
@@ -132,13 +138,7 @@ const Login = () => {
           </button>
 
           <div className="d-flex flex-column justify-content-center align-items-center mt-5">
-            <button
-              className={"btn-login"}
-              disabled={loading}
-              onClick={(e) => {
-                handleSubmit(e);
-              }}
-            >
+            <button className={"btn-login"} disabled={loading} type="submit">
               {loading ? (
                 <div className="d-flex justify-content-center align-items-center">
                   <Loader height={25} width={25} color={"#fff"} stroke={4} />

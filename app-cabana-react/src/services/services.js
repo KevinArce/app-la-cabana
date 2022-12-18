@@ -1,7 +1,7 @@
 import axios from "axios";
 
 //colocar host de la api
-const urlBase = "https://679f-179-51-59-47.ngrok.io/api/v1";
+const urlBase = "https://ce33-179-51-59-47.ngrok.io/api/v1";
 
 /**
  * @param {string}  url url a la cual consultar

@@ -22,8 +22,9 @@ const Entregas = () => {
       .then((response) => {
         // const { data } = response;
         const entregasListArray = [];
+        const estados = ['Bueno', 'Regular', 'Malo'];
         //generar fake data
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
           const entregasListObject = {
             FECMOV: new Date(
               new Date().setDate(
@@ -39,7 +40,7 @@ const Entregas = () => {
             HUMEDAD: Math.floor(Math.random() * 100000),
             HORASQUEMA: Math.floor(Math.random() * 100000),
             CORTE: Math.floor(Math.random() * 100000),
-            ESTADOCORTE: Math.floor(Math.random() * 100000),
+            ESTADOCORTE: estados[Math.floor(Math.random() * 3)],
           };
           entregasListArray.push(entregasListObject);
         }
