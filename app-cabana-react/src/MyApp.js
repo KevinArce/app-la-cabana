@@ -4,6 +4,7 @@ import { AuthContext } from "./auth/AuthContext";
 import { authReducer } from "./auth/authReducer";
 import "./index.css";
 import "../src/FontAwesome/css/all.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const init = () => {
   const user = JSON.parse(localStorage.getItem("user")) || { logged: false };

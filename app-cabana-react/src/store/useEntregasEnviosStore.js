@@ -1,6 +1,6 @@
 import create from "zustand";
 
-const EntregasEnviosStore = create((set) => ({
+const useEntregasEnviosStore = create((set) => ({
   entregasEnvios: {
     fecmov: "",
     numenv: "",
@@ -19,4 +19,4 @@ const EntregasEnviosStore = create((set) => ({
   setEntregasEnvios: (entregasEnvios) => set({ entregasEnvios }),
 }));
 
-export default EntregasEnviosStore;
+export default useEntregasEnviosStore;

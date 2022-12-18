@@ -1,9 +1,15 @@
-import create from 'zustand';
+import create from "zustand";
+
+const getDetails = () => {
+  const details = localStorage.getItem("details");
+  return details
+    ? JSON.parse(details)
+    : { usuario: "", nombre: "", codProv: "", nomProv: "", tipo: "" };
+};
 
 const useDetailsStore = create((set) => ({
-    details: {usuario: '', nombre: '', codProv: '', nomProv: '', tipo: ''},
-    setDetails: (details) => set({ details }),
-
+  details: getDetails(),
+  setDetails: (details) => set({ details }),
 }));
 
 export default useDetailsStore;
