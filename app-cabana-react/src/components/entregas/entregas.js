@@ -1,10 +1,54 @@
-import React from "react";
-import "./entregas.css";
+import React, { useEffect, useState } from "react";
+import { useZafraStore, useDetailsStore } from "../../store";
+import serviceApi from "../../services/services";
 import group8 from "./assets/group8.svg";
-import EntregasEnviosStore from "../../store/useEntregasEnviosStore";
-
+import { Loader } from "../generalComponents";
+import Table from "./Table";
+import "./entregas.css";
 
 const Entregas = () => {
+  const [entregasList, setEntregasList] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const zafra = useZafraStore((state) => state.zafra);
+  const details = useDetailsStore((state) => state.details);
+
+  useEffect(() => {
+    setLoading(true);
+    serviceApi
+      .post("getSp_Portal_Rendi_Envios_Select", {
+        ZAFRA: zafra,
+        codProv: details.codProv,
+      })
+      .then((response) => {
+        // const { data } = response;
+        const entregasListArray = [];
+        //generar fake data
+        for (let i = 0; i < 20; i++) {
+          const entregasListObject = {
+            FECMOV: new Date(
+              new Date().setDate(
+                new Date().getDate() - Math.floor(Math.random() * 100)
+              )
+            ).toLocaleDateString(),
+            NOENVIO: Math.floor(Math.random() * 100000),
+            FINCA: Math.floor(Math.random() * 100000),
+            NOMLOTE: Math.floor(Math.random() * 100000),
+            TM: Math.floor(Math.random() * 100000),
+            POLCAL: Math.floor(Math.random() * 100000),
+            REN: Math.floor(Math.random() * 100000),
+            HUMEDAD: Math.floor(Math.random() * 100000),
+            HORASQUEMA: Math.floor(Math.random() * 100000),
+            CORTE: Math.floor(Math.random() * 100000),
+            ESTADOCORTE: Math.floor(Math.random() * 100000),
+          };
+          entregasListArray.push(entregasListObject);
+        }
+
+        setEntregasList(entregasListArray);
+        setLoading(false);
+      });
+  }, [zafra, details.codProv]);
+
   return (
     <div className="padding-init entregas">
       <div className="mt-3 flex-container-2">
@@ -38,177 +82,13 @@ const Entregas = () => {
       </div>
 
       <div className="mt-3 container-table">
-        <table className="table-default">
-          <tr className="header-default">
-            <th>FECMOV</th>
-            <th>NO ENVIO</th>
-            <th>FINCA</th>
-            <th>NOMLOTE</th>
-            <th>TM</th>
-            <th>POL CAL</th>
-            <th>REN. KG/TM</th>
-            <th>HUMEDAD %</th>
-            <th>HORAS QUEMA H</th>
-            <th>CORTE</th>
-            <th>ESTADO CORTE</th>
-          </tr>
-          <tr>
-            <td>Soleado</td>
-            <td>Mayormente soleado</td>
-            <td>Parcialmente nublado</td>
-            <td>Soleado</td>
-            <td>Mayormente soleado</td>
-            <td>Parcialmente nublado</td>
-            <td>Soleado</td>
-            <td>Mayormente soleado</td>
-            <td>Parcialmente nublado</td>
-            <td>Soleado</td>
-            <td>Mayormente soleado</td>
-          </tr>
-          <tr>
-            <td>19°C</td>
-            <td>17°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-            <td>12°C</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-          <tr>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-            <td>S 16 km/h</td>
-            <td>E 13 km/h</td>
-            <td>E 11 km/h</td>
-          </tr>
-        </table>
+        {loading ? (
+          <div className="col-12 d-flex align-items-center justify-content-center mt-5">
+            <Loader height={60} width={60} color="#2f6b35" stroke={3} />
+          </div>
+        ) : (
+          <Table entregasList={entregasList} />
+        )}
       </div>
     </div>
   );
